@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- FORM VIEW -->
+    <record id="view_document_form"
+            model="ir.ui.view">
+        <field name="name">tmc.document.form</field>
+        <field name="model">tmc.document</field>
+        <field name="inherit_id"
+               ref="tmc.view_document_form" />
+        <field name="arch"
+               type="xml">
+            <button name="highlights_count_button"
+                    position="before">
+                <field name="pdf_url"
+                       invisible="True"/>
+                <button class="oe_inline oe_stat_button"
+                        type="object"
+                        string="View PDF"
+                        name="open_pdf"
+                        attrs="{'invisible': [('pdf_url', '=', False)]}"
+                        icon="fa-file-pdf-o"/>
+                </button>
+            <button name="highlights_count_button"
+                    position="after">
+                <button class="oe_stat_button"
+                        type="object"
+                        string="Search &amp; Index"
+                        name="search_and_index_pdf"
+                        context="{'force_ocr': False}"
+                        icon="fa-refresh"
+                        groups="tmc.group_hidden_elements" />
+                <button class="oe_stat_button"
+                        type="object"
+                        string="Force OCR"
+                        context="{'force_ocr': True}"
+                        name="search_and_index_pdf"
+                        icon="fa-bold"
+                        groups="tmc.group_hidden_elements" />
+            </button>
+            <page name="highlights"
+                  position="after">
+                <page name="indexed_content_page"
+                      string="Indexed Content"
+                      groups="tmc.group_hidden_elements">
+                    <group>
+                        <field name="indexed_content"
+                               nolabel="1" />
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <!-- TREE VIEW -->
+    <record id="view_document_tree"
+            model="ir.ui.view">
+        <field name="name">tmc.document.tree</field>
+        <field name="model">tmc.document</field>
+        <field name="inherit_id"
+               ref="tmc.view_document_tree" />
+        <field name="arch"
+               type="xml">
+            <field name="document_object"
+                   position="after">
+                <field name="main_topic_ids"
+                       widget="many2many_tags" />
+                <field name="secondary_topic_ids"
+                       widget="many2many_tags" />
+                <field name="pdf_url"
+                       invisible="True" />
+                <button type="object"
+                        string="View PDF"
+                        name="open_pdf"
+                        attrs="{'invisible': [('pdf_url', '=', False)]}"
+                        icon="fa-file-pdf-o" />
+            </field>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW -->
+    <record model="ir.ui.view"
+            id="document_search_view">
+        <field name="name">document.search</field>
+        <field name="model">tmc.document</field>
+        <field name="inherit_id"
+               ref="tmc.document_search_view" />
+        <field name="arch"
+               type="xml">
+            <search>
+                <field name="indexed_content"
+                       filter_domain="[('indexed_content', 'ilike', self)]" />
+            </search>
+        </field>
+    </record>
+
+</odoo>

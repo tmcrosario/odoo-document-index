@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="indexed_content_gin_idx"
+            model="trgm.index">
+        <field name="index_type">gin</field>
+        <field name="field_id"
+               search="[('model','=','tmc.document'),('name','=','indexed_content')]" />
+    </record>
+
+</odoo>
