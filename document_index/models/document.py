@@ -39,6 +39,10 @@ class Document(models.Model):
             return None
 
     @api.one
+    @api.depends('document_type_id',
+                 'dependence_id',
+                 'number',
+                 'period')
     def _get_pdf_url(self):
         res = self._get_path_and_url()
         if res and path.isfile(res['file_path']):
