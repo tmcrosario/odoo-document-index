@@ -1,0 +1,61 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * document_index
+# 
+# Translators:
+# Liso <lisandrogallo@tmcrosario.gov.ar>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-21 12:04+0000\n"
+"PO-Revision-Date: 2017-07-21 12:04+0000\n"
+"Last-Translator: Liso <lisandrogallo@tmcrosario.gov.ar>, 2017\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/tmcrosario/teams/73663/es_AR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_AR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: document_index
+#: code:addons/document_index/models/document.py:67
+#, python-format
+msgid "Error processing OCR for document."
+msgstr "Error procesando OCR para el documento."
+
+#. module: document_index
+#: model:ir.ui.view,arch_db:document_index.view_document_form
+msgid "Force OCR"
+msgstr "Forzar OCR"
+
+#. module: document_index
+#: model:ir.ui.view,arch_db:document_index.view_document_form
+msgid "Indexed Content"
+msgstr "Contenido Indexado"
+
+#. module: document_index
+#: model:ir.model.fields,field_description:document_index.field_tmc_document_indexed_content
+msgid "Indexed content"
+msgstr "Contenido Indexado"
+
+#. module: document_index
+#: model:ir.model.fields,field_description:document_index.field_tmc_document_pdf_url
+msgid "Pdf url"
+msgstr "Enlace a PDF"
+
+#. module: document_index
+#: model:ir.ui.view,arch_db:document_index.view_document_form
+msgid "Search & Index"
+msgstr "Buscar e Indexar"
+
+#. module: document_index
+#: model:ir.ui.view,arch_db:document_index.view_document_form
+#: model:ir.ui.view,arch_db:document_index.view_document_tree
+msgid "View PDF"
+msgstr "Ver PDF"
+
+#. module: document_index
+#: model:ir.model,name:document_index.model_tmc_document
+msgid "tmc.document"
+msgstr ""

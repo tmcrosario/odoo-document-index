@@ -4,7 +4,7 @@ import logging
 from os import path
 
 import textract
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
