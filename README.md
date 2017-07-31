@@ -2,7 +2,7 @@
 Odoo fields and functions for document indexing in TMC addons.
 
 ## Translation Status
-[![Transifex Status](https://www.transifex.com/tmcrosario/odoo-tmc-document-index-10/)](https://www.transifex.com/tmcrosario/odoo-tmc-document-index-10/)
+[![Transifex Status](https://www.transifex.com/tmcrosario/odoo-document-index-10/)](https://www.transifex.com/tmcrosario/odoo-document-index-10/)
 
 ## License
 
