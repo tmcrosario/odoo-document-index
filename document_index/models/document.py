@@ -2,12 +2,16 @@
 
 import logging
 from os import path
-
-import textract
-from odoo import _, api, fields, models
+from odoo import _, api, fields, models, tools
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
+
+try:
+    import textract
+    TEXTRACT_PATH = tools.find_in_path('textract')
+except (ImportError, IOError) as err:
+    _logger.debug(err)
 
 
 class Document(models.Model):
@@ -20,7 +24,7 @@ class Document(models.Model):
     )
 
     pdf_url = fields.Char(
-        compute='_get_pdf_url',
+        compute='_compute_pdf_url',
         readonly=True
     )
 
@@ -38,12 +42,13 @@ class Document(models.Model):
         except Exception:
             return None
 
-    @api.one
+    @api.multi
     @api.depends('document_type_id',
                  'dependence_id',
                  'number',
                  'period')
-    def _get_pdf_url(self):
+    def _compute_pdf_url(self):
+        self.ensure_one()
         res = self._get_path_and_url()
         if res and path.isfile(res['file_path']):
             self.pdf_url = res['url']
@@ -53,9 +58,10 @@ class Document(models.Model):
                                 method='tesseract',
                                 language='spa')
 
-    @api.one
+    @api.multi
     @api.depends('pdf_url')
     def search_and_index_pdf(self):
+        self.ensure_one()
         res = self._get_path_and_url()
         force_ocr = self.env.context['force_ocr']
         if res and self.pdf_url:
