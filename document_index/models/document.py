@@ -48,10 +48,10 @@ class Document(models.Model):
                  'number',
                  'period')
     def _compute_pdf_url(self):
-        self.ensure_one()
-        res = self._get_path_and_url()
-        if res and path.isfile(res['file_path']):
-            self.pdf_url = res['url']
+        for document in self:
+            res = document._get_path_and_url()
+            if res and path.isfile(res['file_path']):
+                document.pdf_url = res['url']
 
     def _get_pdf_ocr(self, file_path):
         return textract.process(file_path,
