@@ -61,12 +61,8 @@
                ref="tmc.view_document_tree" />
         <field name="arch"
                type="xml">
-            <field name="document_object"
+            <field name="topics_display_name"
                    position="after">
-                <field name="main_topic_ids"
-                       widget="many2many_tags" />
-                <field name="secondary_topic_ids"
-                       widget="many2many_tags" />
                 <field name="pdf_url"
                        invisible="True" />
                 <button type="object"
