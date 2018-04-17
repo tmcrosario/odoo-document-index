@@ -34,10 +34,10 @@ class Document(models.Model):
                 'tmc.document.repository_path')
             repository_url = self.env['ir.config_parameter'].get_param(
                 'tmc.document.repository_url')
-            file_name = str(self.number).zfill(6) + '.pdf'
+            file_name = self.name.replace('/', '-') + '.pdf'
             return {
                 'file_path': repository_path + file_name,
-                'url': repository_url + repository_path + file_name
+                'url': repository_url + file_name
             }
         except Exception:
             return None
@@ -61,23 +61,23 @@ class Document(models.Model):
     @api.multi
     @api.depends('pdf_url')
     def search_and_index_pdf(self):
-        self.ensure_one()
-        res = self._get_path_and_url()
-        force_ocr = self.env.context['force_ocr']
-        if res and self.pdf_url:
-            text = None
-            if not self.indexed_content or force_ocr:
-                try:
-                    text = textract.process(res['file_path'])
-                    if not text or force_ocr:
-                        text = self._get_pdf_ocr(
-                            file_path=res['file_path'])
-                except Exception:
-                    raise UserError(
-                        _('Error processing OCR for document.'))
-                finally:
-                    self.indexed_content = text.replace(
-                        '\n', ' ').replace('\r', '')
+        for document in self:
+            res = document._get_path_and_url()
+            force_ocr = self.env.context['force_ocr']
+            if res and document.pdf_url:
+                text = None
+                if not document.indexed_content or force_ocr:
+                    try:
+                        text = textract.process(res['file_path'])
+                        if not text or force_ocr:
+                            text = document._get_pdf_ocr(
+                                file_path=res['file_path'])
+                    except Exception:
+                        raise UserError(
+                            _('Error processing OCR for document.'))
+                    finally:
+                        document.indexed_content = text.replace(
+                            '\n', ' ').replace('\r', '')
 
     @api.multi
     def open_pdf(self):

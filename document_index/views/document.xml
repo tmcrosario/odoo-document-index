@@ -19,7 +19,7 @@
                         string="View PDF"
                         name="open_pdf"
                         attrs="{'invisible': [('pdf_url', '=', False)]}"
-                        icon="fa-file-pdf-o"/>
+                        icon="fa-file-pdf-o text-danger"/>
                 </button>
             <button name="highlights_count_button"
                     position="after">
@@ -66,10 +66,10 @@
                 <field name="pdf_url"
                        invisible="True" />
                 <button type="object"
-                        string="View PDF"
+                        class="pdf_icon"
                         name="open_pdf"
                         attrs="{'invisible': [('pdf_url', '=', False)]}"
-                        icon="fa-file-pdf-o" />
+                        icon="fa-file-pdf-o text-danger" />
             </field>
         </field>
     </record>
