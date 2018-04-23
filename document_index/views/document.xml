@@ -61,8 +61,8 @@
                ref="tmc.view_document_tree" />
         <field name="arch"
                type="xml">
-            <field name="topics_display_name"
-                   position="after">
+            <field name="name"
+                   position="before">
                 <field name="pdf_url"
                        invisible="True" />
                 <button type="object"
@@ -75,7 +75,7 @@
     </record>
 
     <!-- SEARCH VIEW -->
-    <record model="ir.ui.view"
+    <!-- <record model="ir.ui.view"
             id="document_search_view">
         <field name="name">document.search</field>
         <field name="model">tmc.document</field>
@@ -88,6 +88,6 @@
                        filter_domain="[('indexed_content', 'ilike', self)]" />
             </search>
         </field>
-    </record>
+    </record> -->
 
 </odoo>
